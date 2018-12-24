@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<!-- targetRuntime="MyBatis3Simple":生成简单版的CRUD MyBatis3:豪华版 -->
+	<context id="mysqlTables" targetRuntime="MyBatis3">
+		<!-- jdbcConnection：指定如何连接到目标数据库 -->
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.0.121:1521:xianorcl"
+			userId="hecv_front" password="000000">
+		</jdbcConnection>
+
+		<!-- -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- javaModelGenerator：指定javaBean的生成策略 
+			targetPackage="test.model"：目标包名 
+			targetProject="\MBGTestProject\src"：目标工程 
+			-->
+		<javaModelGenerator targetPackage="com.hengyunsoft.common.entity"
+			targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- sqlMapGenerator：sql映射生成策略：mapper.xml 生成位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject=".\src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- javaClientGenerator:指定mapper接口所在的位置 DAO曾文件位置，*mapper.java-->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.hengyunsoft.common.dao" targetProject=".\src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 指定要逆向分析哪些表：根据表要创建javaBean  表名 + 类名-->
+		<table tableName="ex_data_request2" domainObjectName="ExDataRequest2"></table> 
+		<!--  <table tableName="country" domainObjectName="Country"></table> -->
+	</context>
+</generatorConfiguration>
